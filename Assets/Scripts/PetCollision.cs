@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PetCollision : MonoBehaviour
 {
+    public RigidbodyOptimizer rigidbodyOptimizer;
     public bool rammingOn = false;
     public bool explosiveHit = false;
     public float sphereCollisionRange = 1f;
@@ -25,11 +26,12 @@ public class PetCollision : MonoBehaviour
 
         
             if (collision.gameObject.tag == "Wall"){
+                print("Hit");
             // if (collider.gameObject.GetComponent<Rigidbody>() == null){
                     Collider[] hitColliders = Physics.OverlapSphere(transform.position, sphereCollisionRange);
                     foreach (var hitCollider in hitColliders){
                         if (hitCollider.tag == "Wall" && hitCollider.GetComponent<Rigidbody>() == null){
-                            hitCollider.gameObject.AddComponent<Rigidbody>();
+                            rigidbodyOptimizer.AddBody(hitCollider.gameObject.AddComponent<Rigidbody>());
                             if (explosiveHit){
                                 if (hitCollider.gameObject != collision.gameObject){
                                     var direction = Quaternion.Euler(0, 0, Random.Range(-45f, 45f)) * (-collision.relativeVelocity);
@@ -40,7 +42,7 @@ public class PetCollision : MonoBehaviour
                         }
                     }
                     if (collision.gameObject.GetComponent<Rigidbody>() == null){
-                        collision.gameObject.AddComponent<Rigidbody>();
+                        rigidbodyOptimizer.AddBody(collision.gameObject.AddComponent<Rigidbody>());
                     } 
                     collision.gameObject.GetComponent<Rigidbody>().AddForce(-collision.relativeVelocity , ForceMode.Impulse); 
 

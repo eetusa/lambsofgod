@@ -48,7 +48,7 @@ public class Player : MonoBehaviour
         // }
         //print(velocity);
         if (isGrounded && Input.GetKeyDown(KeyCode.Space)){
-            print("jump");
+           // print("jump");
            // myRigidBody.AddForce(jump * jumpForce, ForceMode.Impulse);
            
             myRigidBody.AddForce (jump * Mathf.Sqrt(2*gravity * jumpHeight), ForceMode.VelocityChange);
