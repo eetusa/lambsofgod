@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RigidbodyOptimizer : MonoBehaviour
 {
-    public float waitTime = 1f;
+    public float waitTime = 0-1f;
     public float linearVelocityLimit = 0.01f;
     public float angularVelocityLimit = 0.01f;
     //List<Rigidbody> rigidbodies;

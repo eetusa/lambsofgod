@@ -34,13 +34,27 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        direction = input.normalized;
+       // Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+        //direction = input.normalized;
+        
+
+        Vector3 forward = transform.forward*Input.GetAxisRaw("Vertical");
+        Vector3 right = transform.right*Input.GetAxisRaw("Horizontal");
+
+        direction = (forward+right).normalized;
+
         velocity = direction * speed;
+
         if (Input.GetKey(KeyCode.Mouse0)){
             petCollision.rammingOn = true;
         } else {
             petCollision.rammingOn = false;
+        }
+
+        if (Input.GetKey(KeyCode.Mouse1)){
+            Time.timeScale = 0.5f;
+        } else {
+            Time.timeScale = 1f;
         }
         // if (closestJoint. > jointForce){
         //    // myRigidBody.AddForce (jump * Mathf.Sqrt(2*gravity * jumpHeight), ForceMode.VelocityChange);

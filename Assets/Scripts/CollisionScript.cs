@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CollisionScript : MonoBehaviour
 {
-    Rigidbody rigidbody;
+    Rigidbody rbody;
     // Start is called before the first frame update
     void Start()
     {
@@ -19,10 +19,10 @@ public class CollisionScript : MonoBehaviour
 
     void OnCollisionEnter(Collision collision){
         if (collision.gameObject.tag=="Pet"){
-            if (rigidbody == null){
-                rigidbody = gameObject.AddComponent<Rigidbody>();     
+            if (rbody == null){
+                rbody = gameObject.AddComponent<Rigidbody>();     
                 
-                rigidbody.AddForce(collision.relativeVelocity , ForceMode.Impulse); 
+                rbody.AddForce(collision.relativeVelocity , ForceMode.Impulse); 
                // rigidbody.AddForce(collision.gameObject.GetComponent<Rigidbody>().velocity*5f, ForceMode.Impulse);
             }
         }
